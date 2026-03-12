@@ -1,0 +1,78 @@
+%===============================================================================
+% Anhang
+%===============================================================================
+
+\chapter{Zusätzliche Tabellen und Abbildungen}
+\label{app:tables}
+
+Weitere detaillierte Ergebnisse und Rohdaten können hier eingefügt werden.
+
+\section{Beispiel-Tabelle}
+
+\begin{table}[h]
+    \centering
+    \caption{Beispiel-Tabelle für den Anhang}
+    \label{tab:appendix_example}
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Variante} & \textbf{Häufigkeit} & \textbf{Prozentanteil} \\
+        \midrule
+        Variante A        & 35                  & 35\%                   \\
+        Variante B        & 45                  & 45\%                   \\
+        Variante C        & 20                  & 20\%                   \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\chapter{Code und technische Details}
+\label{app:code}
+
+Code-Listings können hier eingefügt werden (Beispiel):
+
+\medskip
+\noindent
+\texttt{%
+    import numpy as as np \\
+    def calculate\_mean(data): \\
+    \quad return np.mean(data) \\
+}
+\medskip
+
+\section{Fragebogen und Materialien}
+\label{app:materials}
+
+Falls in der Studie einen Fragebogen oder andere Materialien verwendet wurden,
+können diese hier eingefügt werden.
+
+\subsection{Fragebogen}
+
+\begin{enumerate}
+    \item Frage 1: [Fragetext]
+    \item Frage 2: [Fragetext]
+    \item Frage 3: [Fragetext]
+\end{enumerate}
+
+\section{Statistische Details}
+\label{app:statistics}
+
+Detaillierte statistische Outputs können hier dokumentiert werden.
+
+\begin{table}[h]
+    \centering
+    \caption{Korrelationsmatrix}
+    \label{tab:correlations}
+    \begin{tabular}{lccc}
+        \toprule
+             & \textbf{Var1} & \textbf{Var2} & \textbf{Var3} \\
+        \midrule
+        Var1 & 1.000         & 0.345         & -0.123        \\
+        Var2 & 0.345         & 1.000         & 0.567         \\
+        Var3 & -0.123        & 0.567         & 1.000         \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Literaturverweis für Anhang}
+\label{app:literature}
+
+Zusätzliche Literaturangaben können hier eingefügt werden.

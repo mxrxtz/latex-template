@@ -1,0 +1,235 @@
+% ===============================================================================
+% ERWEITERTE TIPPS UND TRICKS FÜR LaTeX ARBEITEN
+% ===============================================================================
+
+% 1. PROFESSIONELLE TABELLEN-TIPPS
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Gut strukturierte Tabelle mit booktabs:
+% ────────────────────────────────────────
+\begin{table}[h]
+    \centering
+    \caption{Beispiel einer professionellen Tabelle}
+    \label{tab:professionell}
+    \small  % Schriftgröße verkleinern
+    \begin{tabular}{lrrc}
+        \toprule
+        \textbf{Variable} & \textbf{MW} & \textbf{SD} & \textbf{N} \\
+        \midrule
+        Länge (cm)        & 156.3 & 8.4 & 100 \\
+        Gewicht (kg)      & 72.1  & 12.3 & 100 \\
+        Alter (Jahre)     & 25.4  & 4.2 & 100 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% Tipps:
+% - Verwende \toprule, \midrule, \bottomrule statt \hline
+% - Nutze \multirow für vertikale Zusammenfassung
+% - Nutze \multicolumn für horizontale Zusammenfassung
+% - Runde Zahlen sinnvoll (maximal 2 Dezimalstellen)
+
+
+% 2. VERBESSERTE ABBILDUNGEN-TIPPS
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Mehrere Unterabbildungen:
+% ──────────────────────────
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/plot1.pdf}
+        \caption{Erste Messung}
+        \label{fig:plot1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/plot2.pdf}
+        \caption{Zweite Messung}
+        \label{fig:plot2}
+    \end{subfigure}
+    \caption{Vergleich der beiden Messungen}
+    \label{fig:vergleich}
+\end{figure}
+
+% Tipps:
+% - Verwende \textwidth für konsistente Größen
+% - Setze width zwischen 0.45 und 0.48 für nebeneinander
+% - Verwende [width=0.8\textwidth] für volle Breite
+
+
+% 3. MATHEMATISCHE FORMELN
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Inline-Gleichung:
+Der Mittelwert ist $\mu = \frac{\sum x_i}{n}$.
+
+% Mehrere nummerierte Gleichungen:
+\begin{align}
+    f(x) &= x^2 + 2x + 1 \label{eq:poly1} \\
+    g(x) &= (x+1)^2 \label{eq:poly2}
+\end{align}
+
+% Nicht nummerierte Gleichungen:
+\begin{equation*}
+    E = mc^2
+\end{equation*}
+
+% Tipps:
+% - Verwende \label{eq:...} für Verweise
+% - Verwende align statt eqnarray (moderne Syntax)
+% - Verwende \\ für Zeilenumbruch in Gleichungssystemen
+
+
+% 4. CODE PROFESSIONELL DARSTELLEN
+% ═════════════════════════════════════════════════════════════════════════════
+
+\begin{lstlisting}[
+    language=Python,
+    caption=Machine Learning Modell Training,
+    label=lst:ml_code,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny
+]
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier
+
+# Prepare data
+X_train = np.random.randn(1000, 10)
+y_train = np.random.randint(0, 2, 1000)
+
+# Train model
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+
+# Evaluate
+accuracy = model.score(X_test, y_test)
+print(f"Accuracy: {accuracy:.3f}")
+\end{lstlisting}
+
+% Unterstützte Sprachen: Python, Java, C, C++, R, Matlab, SQL, ...
+
+
+% 5. DEFINITIONSFELDER UND THEOREME
+% ═════════════════════════════════════════════════════════════════════════════
+
+\begin{definition}[Konvergenz]
+Eine Folge $(a_n)$ konvergiert gegen $a$, wenn für jedes $\epsilon > 0$ 
+ein $N$ existiert, sodass $|a_n - a| < \epsilon$ für alle $n > N$.
+\end{definition}
+
+\begin{theorem}[Zentraler Grenzwertsatz]
+Wenn $(X_n)$ eine Folge unabhängiger, identisch verteilter Zufallsvariablen 
+mit Mittelwert $\mu$ und Varianz $\sigma^2$ ist, dann konvergiert 
+$\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}$ in Verteilung gegen $N(0,1)$.
+\end{theorem}
+
+\begin{remark}
+Dies ist eine wichtige Bemerkung zur praktischen Anwendung.
+\end{remark}
+
+% Tipps:
+% - Definiere eigene Theorem-Umgebungen in config.tex
+% - Nutze diese für Präzision und Klarheit
+
+
+% 6. BESONDERE ZEICHEN UND SYMBOLE
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Physikalische Einheiten (mit siunitx):
+Die Geschwindigkeit betrug \SI{120}{\kilo\meter\per\hour}.
+Die Temperatur lag bei \SI{25}{\celsius}.
+Der Druck war \SI{101.325}{\kilo\pascal}.
+
+% Mathematische Symbole:
+$\forall x \in \mathbb{R}$ existiert $\exists y$ sodass $x \leq y$.
+Im Gegensatz zu $\neg A$ gilt $A \land B \lor C$.
+
+% Griechische Buchstaben:
+$\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \eta, \theta$
+$\lambda, \mu, \nu, \xi, \pi, \rho, \sigma, \tau, \phi, \chi, \psi, \omega$
+
+
+% 7. LÄNGERE ZITATE UND BLOCKQUOTES
+% ═════════════════════════════════════════════════════════════════════════════
+
+\begin{quote}
+"Wissenschaft ist die beste Methode, die wir haben, um herauszufinden, 
+wie die Welt funktioniert. Sie ist aber nicht die einzige Methode."
+\end{quote}
+
+Oder mit Quellenangabe:
+\begin{quote}
+According to Smith (2023), "The future of research lies in 
+interdisciplinary collaboration." \cite{Smith2023}
+\end{quote}
+
+
+% 8. AUFZÄHLUNGEN FÜR VERSCHIEDENE KONTEXTE
+% ═══════════════════════════════════════════════════════════════════════════
+
+% Hierarchische Liste:
+\begin{itemize}
+    \item Erster Punkt
+        \begin{itemize}
+            \item Unterpunkt 1.1
+            \item Unterpunkt 1.2
+                \begin{itemize}
+                    \item Subunterpunkt 1.2.1
+                \end{itemize}
+        \end{itemize}
+    \item Zweiter Punkt
+\end{itemize}
+
+% Nummerierte Liste mit benutzerdefinierter Formatierung:
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \item Erste Anforderung
+    \item Zweite Anforderung
+    \item Dritte Anforderung
+\end{enumerate}
+
+
+% 9. FUSSNOTENTIPPS
+% ═════════════════════════════════════════════════════════════════════════════
+
+Dies ist ein Text mit einer Fußnote\footnote{Hier steht der Fußnotentext.
+    Man kann mehrere Zeilen verwenden.}.
+
+Weitere Fussnote wird automatisch nummeriert\footnote{Automatische Nummerierung}.
+
+% Tipps:
+% - Nutze Fußnoten sparsam
+% - Fußnoten sollten zusätzliche Informationen liefern, nicht Kernaussagen
+% - In wissenschaftlichen Arbeiten: Endnoten oft besser als Fußnoten
+
+
+% 10. KREUZVERWEISE FÜR STRUKTUR
+% ═══════════════════════════════════════════════════════════════════════════
+
+Wie in \secref{sec:methodology} erwähnt, verwendeten wir...
+
+Siehe \figref{fig:results} für eine visuelle Darstellung.
+
+Nach \tabref{tab:comparison} zeigt sich ein klarer Trend.
+
+Weitere Details werden in Appendix \ref{app:statistics} behandelt.
+
+% Tipps:
+% - Nutze immer \label{} nach \section{}, \begin{figure}{}...
+% - Verwende selbsterklärende Label-Namen
+% - Verwende die Hilfsbefehle \secref, \figref, \tabref
+
+
+% ═════════════════════════════════════════════════════════════════════════════
+% PERFORMANCE-TIPPS FÜR GROSSE DOKUMENTE
+% ═════════════════════════════════════════════════════════════════════════════
+
+% Für sehr große Dokumente:
+% 1. Kompiliere einzelne Dateien mit \input{} statt \include{}
+% 2. Nutze \graphicspath{{figures/}} in config.tex
+% 3. Compression: \includegraphics[width=0.6\textwidth]{file.pdf}
+% 4. Verwende Draft-Modus beim Schreiben:
+%    \documentclass[draft]{article} (versteckt Grafiken schneller)
+
+% ═════════════════════════════════════════════════════════════════════════════

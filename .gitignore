@@ -1,0 +1,107 @@
+# LaTeX-spezifische Dateien
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.glo
+*.gls
+*.glsdefs
+*.glg
+*.ist
+*.syg
+*.syi
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+*-blx.bib
+.bibtex/
+
+# Kompilierte PDF (optional - kommentiere aus, wenn du PDFs speichern möchtest)
+# *.pdf
+
+# Temporäre macOS-Dateien
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporäre Windows-Dateien
+Thumbs.db
+
+# Editor-spezifische Dateien
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
+
+# IDE
+.project
+.pydevproject
+.c9/
+*.sage.py
+
+# Python-Umgebung (falls mit Python-Tools verwendet)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node.js (falls mit npm-Tools verwendet)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS-Dateien
+*.o
+*.lo
+*.la
+*.a
+*.so
+*.so.*
+*.so.a
+*.o.d
+*.gch
+*.gchp
+*.gcda
+*.gcno
+*.gcov
+
+# Sonstige
+.cache/
+.pytest_cache/
+htmlcov/
+.coverage
+.webassets-cache
+
+# Overleaf-spezifisch (wenn auf Overleaf verwendet)
+.overleaf/

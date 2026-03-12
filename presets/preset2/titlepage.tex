@@ -1,0 +1,26 @@
+%===============================================================================
+% Preset 2: Laborberichterstattung - Deckblatt und Titelseite
+%===============================================================================
+
+\setlength{\parindent}{0pt}
+
+\pagenumbering{gobble}
+
+\IfFileExists{figures/Deckblatt-P1-web.pdf}{
+    \includepdf[pages=-]{figures/Deckblatt-P1-web.pdf}
+}{}
+
+\title{\large {\sf Fakult\"at f\"ur Physik der Ludwig-Maximilians-Universit\"at M\"unchen}\\
+{\bf Grundpraktikum P1}\\ ~ \\ ~ \\
+XXX -- Versuchstitel
+\\ ~ \\ ~ \\ ~ \\
+{\large Pr\"asenzversuch Auswertung}
+}
+
+\author{\workAuthor}
+
+\date{\workDate}
+
+\maketitle
+
+\newpage

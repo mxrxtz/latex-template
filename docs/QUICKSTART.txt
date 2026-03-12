@@ -1,0 +1,198 @@
+% ===============================================================================
+% SCHNELLSTART: Erste Schritte mit dem Template
+% ===============================================================================
+
+Willkommen zu deinem neuen LaTeX-Template für wissenschaftliche Arbeiten!
+
+SCHRITT 1: Konfiguration anpassen
+─────────────────────────────────
+Öffne die Datei: config/preamble.tex
+
+Ändere diese Zeilen mit deinen Daten:
+    \def\workTitle{Titel der Arbeit}
+    \def\workAuthor{Dein Name}
+    \def\workDate{\today}
+    \def\workUniversity{Universität Name}
+    \def\workInstitute{Institut Name}
+
+
+SCHRITT 2: Inhalte einfügen
+─────────────────────────────
+Öffne die folgenden Dateien in chapters/ und schreibe deinen Inhalt:
+    
+    chapters/01_introduction.tex  → Einleitung schreiben
+    chapters/02_methodology.tex   → Methodik beschreiben
+    chapters/03_results.tex       → Ergebnisse darstellen
+    chapters/04_discussion.tex    → Diskussion schreiben
+    chapters/05_conclusion.tex    → Schlussfolgerung schreiben
+    
+Weiterer Inhalt:
+    sections/appendix.tex         → Anhang (optional)
+
+
+SCHRITT 3: Literatur hinzufügen
+────────────────────────────────
+Öffne: references.bib (im Root-Verzeichnis)
+
+Füge deine Quellen im BibTeX-Format ein. Beispiel:
+
+    @article{Mustermann2023,
+        author = {Mustermann, Max and Beispiel, Berta},
+        title = {Titel des Artikels},
+        journal = {Name des Journals},
+        volume = {42},
+        number = {1},
+        pages = {1--20},
+        year = {2023},
+        doi = {10.1234/example}
+    }
+
+Im Text zitieren mit: \cite{Mustermann2023}
+
+
+SCHRITT 4: Abbildungen einbinden
+─────────────────────────────────
+1. Lege deine Bilder im figures/ Ordner ab (PNG, JPG, PDF)
+2. Im Text einbinden:
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/meinbild.png}
+        \caption{Beschreibung}
+        \label{fig:meinbild}
+    \end{figure}
+
+    Verweis: \figref{fig:meinbild}
+
+
+SCHRITT 5: Rohdaten organisieren
+─────────────────────────────────
+Optional: Lege deine Rohdaten/Datensätze in data/ ab
+
+
+SCHRITT 6: Kompilieren und PDF erstellen
+──────────────────────────────────────────
+Option A: Mit VS Code (empfohlen)
+    1. Stelle sicher, dass "LaTeX Workshop" Extension installiert ist
+    2. Öffne main.tex (im Root)
+    3. Drücke Ctrl+Shift+B (oder Cmd+Shift+B auf Mac)
+
+Option B: Mit Makefile (Mac/Linux)
+    Terminal: cd scripts && make
+    Für Hilfe: make help
+
+Option C: Mit Kompilierungs-Skript (Mac/Linux)
+    Terminal: cd scripts && chmod +x compile.sh && ./compile.sh
+
+Option D: Manuell (Kommandozeile aus Root-Verzeichnis)
+    pdflatex main.tex
+    bibtex main
+    pdflatex main.tex
+    pdflatex main.tex
+
+
+HÄUFIGE ANFÄNGER-FEHLER:
+───────────────────────
+
+❌ "Undefined control sequence"
+✓ Lösung: Überprüfe config/preamble.tex ob alle Pakete geladen sind
+
+❌ "Extra alignment tab has been changed to \\cr"
+✓ Lösung: Zu viele & in Tabelle - Spaltenanzahl überprüfen!
+
+❌ Literaturverzeichnis ist leer
+✓ Lösung: 
+    1. Stelle sicher, dass du \cite{} im Text verwendest
+    2. Kompiliere mit bibtex (machen Make/Skript automatisch)
+    3. Kompiliere mindestens 2x mit pdflatex nach bibtex
+
+❌ Abbildungen werden nicht angezeigt
+✓ Lösung:
+    1. Überprüfe, ob der Ordner "figures/" existiert
+    2. Überprüfe ob der Dateipfad korrekt ist
+    3. Versuche mit vollständigem Pfad in includegraphics
+
+❌ "Cannot find file"
+✓ Lösung: Prüfe, ob die Kapitel-Pfade in main.tex korrekt sind:
+    \input{chapters/01_introduction.tex}
+    \input{sections/appendix.tex}
+
+
+NÜTZLICHE LATEX-BEFEHLE:
+────────────────────────
+
+Textformatierung:
+    \textbf{fetter Text}       → Fettdruck
+    \textit{kursiver Text}     → Kursiv
+    \underline{unterstrichener Text}  → Unterstrichen
+    \texttt{Schreibmaschinen-Font}    → Code-Font
+
+Verweise im Text:
+    \secref{sec:einleitung}    → Verweis auf Abschnitt
+    \figref{fig:beispiel}      → Verweis auf Abbildung
+    \tabref{tab:beispiel}      → Verweis auf Tabelle
+    \cite{Autor2023}           → Literaturzitat
+
+Spezialsymbole:
+    \euro                      → €
+    \degree                    → °
+    \micro                     → µ
+    \alpha, \beta, \gamma      → Griechische Buchstaben
+
+Listen:
+    \begin{itemize}
+        \item Punkt 1
+        \item Punkt 2
+    \end{itemize}
+
+    \begin{enumerate}
+        \item Erster Punkt
+        \item Zweiter Punkt
+    \end{enumerate}
+
+
+ORDNERSTRUKTUR-ÜBERBLICK:
+─────────────────────────
+
+📁 latex/
+  ├─ 📄 main.tex                  Main document (compile this)
+  ├─ 📄 references.bib            Your bibliography
+  ├─ 📁 config/
+  │  └─ 📄 preamble.tex          All LaTeX setup & packages
+  ├─ 📁 chapters/
+  │  ├─ 📄 01_introduction.tex    Chapter 1
+  │  ├─ 📄 02_methodology.tex     Chapter 2
+  │  ├─ 📄 03_results.tex         Chapter 3
+  │  ├─ 📄 04_discussion.tex      Chapter 4
+  │  └─ 📄 05_conclusion.tex      Chapter 5
+  ├─ 📁 sections/
+  │  └─ 📄 appendix.tex           Appendix
+  ├─ 📁 figures/                  Your images here
+  ├─ 📁 data/                     Your datasets (optional)
+  ├─ 📁 docs/                     Documentation
+  ├─ 📁 scripts/                  Build scripts
+  └─ 📁 build/                    Compilation output
+
+
+TIPPS ZUR OPTIMALEN NUTZUNG:
+─────────────────────────────
+
+1. Speichere häufig, um Datenverluste zu vermeiden
+2. Nutze sinnvolle Label-Namen: sec:einleitung, fig:ergebnis, tab:daten
+3. Schreibe inkrementell und kompiliere regelmäßig
+4. Hol dir Feedback zu PDF vom Template bevor du viel Inhalt hinzufügst
+5. Nutze Git zur Versionskontrolle
+6. Bei Fragen: Siehe docs/README.md oder docs/ADVANCED_TIPS.txt
+
+
+WEITERE RESSOURCEN:
+───────────────────
+
+📖 docs/README.md                - Umfassende Dokumentation
+📚 https://www.overleaf.com      - Online LaTeX Editor mit Templates
+📘 https://www.latex-project.org - Offizielle LaTeX Dokumentation
+📕 https://en.wikibooks.org/wiki/LaTeX - LaTeX Wikibook
+
+
+VIEL ERFOLG BEI DEINER ARBEIT! 🎓✨
+────────────────────────────────────

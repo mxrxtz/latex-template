@@ -1,0 +1,92 @@
+%===============================================================================
+% Wissenschaftliche Arbeit: Hauptdatei
+%===============================================================================
+\documentclass[a4paper,10pt]{report}
+
+% Importiere Konfiguration und Preamble
+\input{config/preamble.tex}
+
+%===============================================================================
+% Preset-Auswahl (1 oder 2)
+% 1 = Standard wissenschaftliche Arbeit
+% 2 = Laborberichterstattung
+%===============================================================================
+\def\currentPreset{2}
+
+%===============================================================================
+% Abstract ein-/ausschalten
+% 1 = mit Abstract
+% 0 = ohne Abstract
+%===============================================================================
+\def\includeAbstract{2}
+
+%===============================================================================
+% Dokumenttitel und Autor
+%===============================================================================
+\title{\Large \textbf{\workTitle}}
+\author{\workAuthor}
+\date{\workDate}
+
+%===============================================================================
+% Beginn des Dokuments
+%===============================================================================
+\begin{document}
+
+%===============================================================================
+% Titelseite (je nach Preset)
+%===============================================================================
+\ifnum\currentPreset=1
+    \input{presets/preset1/titlepage.tex}
+\else\ifnum\currentPreset=2
+        \input{presets/preset2/titlepage.tex}
+    \fi\fi
+
+% Frontmatter mit roemischen Seitenzahlen
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+%===============================================================================
+% Abstract/Zusammenfassung
+%===============================================================================
+\ifnum\includeAbstract=1
+    \begin{abstract}
+        Eine kurze Zusammenfassung der Arbeit (ueblicherweise 150--250 Woerter).
+        Beschreibe das Problem, den Ansatz, die Ergebnisse und die wichtigsten Schlussfolgerungen.
+    \end{abstract}
+
+    \newpage
+\fi
+
+%===============================================================================
+% Inhaltsverzeichnis
+%===============================================================================
+\tableofcontents
+\newpage
+
+% Hauptteil mit arabischen Seitenzahlen
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%===============================================================================
+% Haupttext
+%===============================================================================
+
+\input{chapters/01_introduction.tex}
+\input{chapters/02_main.tex}
+\input{chapters/03_conclusion.tex}
+
+%===============================================================================
+% Literaturverzeichnis
+%===============================================================================
+\newpage
+\nocite{*}
+\bibliography{references}
+\bibliographystyle{plain}
+
+%===============================================================================
+% Anhang (optional)
+%===============================================================================
+\appendix
+\input{sections/appendix.tex}
+
+\end{document}
