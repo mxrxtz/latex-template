@@ -47,19 +47,35 @@ def setup_project():
     
     include_abstract = "1" if prompt("Include Abstract? (y/n)", "y").lower() == "y" else "0"
 
+    # 2. Define source and check for template files
+    source_dir = os.path.dirname(os.path.abspath(__file__))
+    required_dirs = ["chapters", "config", "presets", "sections", "scripts", "figures"]
+    missing_dirs = [d for d in required_dirs if not os.path.isdir(os.path.join(source_dir, d))]
+    
+    temp_clone_dir = None
+    if missing_dirs:
+        print(f"\n\033[93mTemplate files not found locally. Fetching from GitHub...\033[0m")
+        temp_clone_dir = os.path.join(os.getcwd(), f".tmp-latex-{int(datetime.now().timestamp())}")
+        repo_url = "https://github.com/mxrxtz/latex-template.git"
+        
+        ret = os.system(f"git clone --depth 1 {repo_url} {temp_clone_dir} > /dev/null 2>&1")
+        if ret != 0:
+            print(f"\033[91mError: Could not clone repository. Please check your internet connection.\033[0m")
+            sys.exit(1)
+        source_dir = temp_clone_dir
+
+    exclude_items = {
+        ".git", "__pycache__", "create-latex.py", "main.pdf", 
+        "_minted", "build", project_slug, "cookiecutter", ".DS_Store",
+        "package.json", "package-lock.json", "node_modules"
+    }
+
     print(f"\n\033[1;32mCreating project in '{project_slug}'...\033[0m")
     os.makedirs(project_slug)
 
-    # 2. Define source and exclude list
-    source_dir = os.path.dirname(os.path.abspath(__file__))
-    exclude_items = {
-        ".git", "__pycache__", "create-latex.py", "main.pdf", 
-        "_minted", "build", project_slug, "cookiecutter", ".DS_Store"
-    }
-
     # 3. Copy files
     for item in os.listdir(source_dir):
-        if item in exclude_items:
+        if item in exclude_items or item.startswith(".tmp-latex"):
             continue
         
         s = os.path.join(source_dir, item)
@@ -98,6 +114,10 @@ def setup_project():
 
     update_file(os.path.join(project_slug, "config", "preamble.tex"), preamble_replacements)
     update_file(os.path.join(project_slug, "main.tex"), main_replacements)
+
+    # Clean up temp clone
+    if temp_clone_dir and os.path.exists(temp_clone_dir):
+        shutil.rmtree(temp_clone_dir)
 
     check_dependencies()
 
