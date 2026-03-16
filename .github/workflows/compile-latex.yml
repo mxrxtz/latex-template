@@ -19,9 +19,9 @@ jobs:
           root_file: main.tex
           # Install both python and pygments inside the container
           extra_system_packages: "python3 py3-pygments"
-          # Modern way to enable shell-escape in this action
-          latexmk_shell_escape: true
-          args: "-pdf -interaction=nonstopmode"
+          # Use latexmk with specific flags for biblatex + biber
+          compiler: latexmk
+          args: "-pdf -shell-escape -interaction=nonstopmode -file-line-error"
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
