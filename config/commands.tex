@@ -9,8 +9,9 @@
 \def\workUniversity{Deine Universität}
 \def\workInstitute{Dein Institut / Fakultät}
 
-% Logic for Todo Notes (only show when needed)
-\newcommand{\todo}[1]{\todo[inline, color=red!40]{#1}}
+% Logic for Todo Notes (setting default options)
+\let\oldtodo\todo
+\renewcommand{\todo}[1]{\oldtodo[inline, color=red!40]{#1}}
 
 % Highlighting
 \newcommand{\highlight}[1]{\colorbox{yellow!20}{#1}}
