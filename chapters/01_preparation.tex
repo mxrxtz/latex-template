@@ -1,7 +1,44 @@
 %===============================================================================
-% Kapitel 1: Vorbereitung
+% Kapitel 1: Einleitung / Vorbereitung
 %===============================================================================
 
-\chapter{Vorbereitung}
+\chapter{Einleitung und Vorbereitung}
+\label{ch:vorbereitung}
 
-\textit{Die gescannten Dokumente zur Vorbereitung befinden sich im Anhang (siehe \chref{app:vorbereitung}).}
+Hier beginnt die Einleitung deiner Arbeit. Du kannst den Kontext beschreiben, die Problemstellung erläutern und deine Zielsetzungen definieren.
+
+\section{Hintergrund}
+Beschreibe hier den theoretischen Hintergrund. Dies ist ein Beispiel für ein Zitat: \cite{Smith2020}.
+
+\section{Beispiel für eine Abbildung}
+Hier siehst du, wie man eine Abbildung einfügt. Achte darauf, dass die Datei im Ordner \texttt{figures/} liegt.
+
+% Beispiel-Abbildung (auskommentiert, da Datei evtl. nicht existiert)
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{figures/mein_bild.png}
+%     \caption{Beschreibung der Abbildung.}
+%     \label{fig:beispiel_abbildung}
+% \end{figure}
+
+Verweis auf die Abbildung: \cref{fig:beispiel_abbildung} (falls vorhanden).
+
+\section{Beispiel für eine Tabelle}
+Tabellen sollten mit dem \texttt{booktabs} Paket erstellt werden (siehe \cref{tab:beispiel_tabelle}).
+
+\begin{table}[htbp]
+    \centering
+    \caption{Eine professionelle Tabelle.}
+    \label{tab:beispiel_tabelle}
+    \begin{tabular}{llr}
+        \toprule
+        \textbf{Name} & \textbf{Kategorie} & \textbf{Wert (\si{\meter\per\second})} \\
+        \midrule
+        Messung 1 & Alpha & 12.5 \\
+        Messung 2 & Beta  & 14.8 \\
+        Messung 3 & Gamma & 11.2 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\todo{Ergänze hier noch weitere Details zur Vorbereitung.}
