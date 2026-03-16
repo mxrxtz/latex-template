@@ -42,7 +42,7 @@
 Thumbs.db
 
 # Editor-spezifische Dateien
-.vscode/
+# .vscode/  <-- Removed from ignore to include template settings
 *.swp
 *.swo
 *~
