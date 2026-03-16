@@ -118,7 +118,7 @@ def setup_project():
         r'\\def\\includeAbstract\{.*?\}': f'\\\\def\\\\includeAbstract{{{include_abstract}}}',
     }
 
-    update_file(os.path.join("config", "preamble.tex"), preamble_replacements)
+    update_file(os.path.join("config", "commands.tex"), preamble_replacements)
     update_file("main.tex", main_replacements)
 
     # 5. Check for LaTeX

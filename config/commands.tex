@@ -1,0 +1,25 @@
+%===============================================================================
+% Custom Commands & Variables
+%===============================================================================
+
+% Project Variables
+\def\workTitle{Titel der Arbeit}
+\def\workAuthor{Dein Name}
+\def\workDate{\today}
+\def\workUniversity{Deine Universität}
+\def\workInstitute{Dein Institut / Fakultät}
+
+% Logic for Todo Notes (only show when needed)
+\newcommand{\todo}[1]{\todo[inline, color=red!40]{#1}}
+
+% Highlighting
+\newcommand{\highlight}[1]{\colorbox{yellow!20}{#1}}
+
+% Inline Code
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Legacy Commands (for backward compatibility, now using cleveref)
+\newcommand{\figref}[1]{\cref{#1}}
+\newcommand{\tabref}[1]{\cref{#1}}
+\newcommand{\secref}[1]{\cref{#1}}
+\newcommand{\chref}[1]{\cref{#1}}

@@ -1,0 +1,51 @@
+%===============================================================================
+% Global Settings & Package Configuration
+%===============================================================================
+
+% PGFPlots Setup
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{calc, angles, quotes}
+
+% SIUnitx Setup
+\sisetup{
+    range-units=repeat,
+    multi-part-units=brackets,
+    range-phrase={~bis~},
+    separate-uncertainty,
+    locale=DE,
+    per-mode=symbol-or-fraction
+}
+
+% Minted Setup
+\usemintedstyle{tango}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\setminted{
+    bgcolor=bg,
+    fontsize=\small,
+    linenos=true,
+    breaklines=true,
+    frame=lines
+}
+
+% Header & Footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\workTitle}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Caption Setup
+\usepackage{caption}
+\captionsetup[figure]{labelfont=bf, textfont=normalfont}
+\captionsetup[table]{labelfont=bf, textfont=normalfont}
+
+% Cleveref Customization (German)
+\crefname{figure}{Abb.}{Abb.}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{table}{Tab.}{Tab.}
+\Crefname{table}{Tabelle}{Tabellen}
+\crefname{section}{Abschn.}{Abschn.}
+\Crefname{section}{Abschnitt}{Abschnitte}
+
+% Bibliography Source
+\addbibresource{references.bib}

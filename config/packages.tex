@@ -1,0 +1,51 @@
+%===============================================================================
+% Packages Configuration
+%===============================================================================
+
+% Basic Setup
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{iftex}
+
+% Page Layout
+\usepackage[a4paper, left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+% Typography
+\usepackage{microtype}
+\usepackage{csquotes}
+
+% Mathematics & Units
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{siunitx}
+
+% Graphics & Tables
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{booktabs, array, longtable, multirow}
+
+% Colors & Highlighting
+\usepackage{xcolor}
+\usepackage[newfloat]{minted}
+\usepackage{listings}
+
+% Bibliography & Referencing
+\usepackage[
+    backend=biber,
+    style=numeric,
+    sorting=none,
+    autocite=inline
+]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage[ngerman]{cleveref} % Must be loaded after hyperref
+
+% Utilities
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{enumitem}
