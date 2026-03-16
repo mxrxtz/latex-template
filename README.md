@@ -8,12 +8,12 @@ The easiest way to start a new project is to run the setup wizard directly from 
 
 Using **bun**:
 ```bash
-bun x github:YOUR_USERNAME/YOUR_REPO_NAME
+bun x github:mxrxtz/latex-template
 ```
 
 Using **npx**:
 ```bash
-npx github:YOUR_USERNAME/YOUR_REPO_NAME
+npx github:mxrxtz/latex-template
 ```
 
 Follow the prompts to enter your name, work title, university, and choose between a **Standard Paper** or a **Lab Report**.
