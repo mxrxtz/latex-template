@@ -1,75 +1,66 @@
-# LaTeX-Template für wissenschaftliche Arbeiten
+# 🎓 Professional LaTeX Template
 
-Ein professionelles, modulares und wiederverwendbares LaTeX-Template mit sauberer Ordnerstruktur.
+A modular, clean, and ready-to-use LaTeX template for scientific papers, theses, and lab reports. Optimized for ease of use and professional results.
 
-## 🚀 Schnelleinstieg
+## 🚀 Quick Start (Recommended)
 
-1. **Dokumentation lesen**: Öffne [docs/QUICKSTART.txt](docs/QUICKSTART.txt)
-2. **Konfiguration anpassen**: Bearbeite [config/preamble.tex](config/preamble.tex)
-3. **Kapitel schreiben**: Öffne die Dateien in [chapters/](chapters/)
-4. **Kompilieren**: 
-   - **VS Code**: `Ctrl+Shift+B` 
-   - **Terminal**: `cd scripts && make all`
+The easiest way to start a new project is to run the setup wizard directly from GitHub. You don't even need to clone this repo!
 
-## 📁 Ordnerstruktur
-
-```
-.
-├── main.tex                    # Hauptdatei (kompiliere diese)
-├── references.bib              # Deine Literaturquellen
-├── .gitignore
-│
-├── config/
-│   └── preamble.tex            # LaTeX-Konfiguration
-│
-├── chapters/                   # Deine Kapitel
-│   ├── 01_introduction.tex
-│   ├── 02_methodology.tex
-│   ├── 03_results.tex
-│   ├── 04_discussion.tex
-│   └── 05_conclusion.tex
-│
-├── sections/
-│   └── appendix.tex            # Anhang
-│
-├── figures/                    # Deine Bilder hier
-├── data/                       # Rohdaten (optional)
-│
-├── docs/                       # Dokumentation
-│   ├── README.md               # Ausführliche Doku
-│   ├── QUICKSTART.txt          # Erste Schritte
-│   └── ADVANCED_TIPS.txt       # Fortgeschrittene Tipps
-│
-├── scripts/                    # Build-Tools
-│   ├── Makefile
-│   └── compile.sh
-│
-└── build/                      # Kompilierungs-Output
+Using **bun**:
+```bash
+bun x github:YOUR_USERNAME/YOUR_REPO_NAME
 ```
 
-## 📖 Dokumentation
+Using **npx**:
+```bash
+npx github:YOUR_USERNAME/YOUR_REPO_NAME
+```
 
-- **[docs/QUICKSTART.txt](docs/QUICKSTART.txt)** – Schnelleinstieg (empfohlen!)
-- **[docs/README.md](docs/README.md)** – Ausführliche Dokumentation
-- **[docs/ADVANCED_TIPS.txt](docs/ADVANCED_TIPS.txt)** – Tipps & Tricks
-
-## ✨ Features
-
-✅ Professionelle deutsche LaTeX-Vorlage  
-✅ Modulare Struktur (einfach zu erweitern)  
-✅ Pre-konfiguriert: Mathe, Grafiken, Tabellen, Code-Highlighting  
-✅ BibTeX-Integration für Literaturverwaltung  
-✅ Automatisierte Kompilierung (Make/Bash-Skript)  
-✅ Saubere Git-Ignores  
-
-## 💡 Hilfreiche Tipps
-
-- **Schnelle Kompilierung**: `make -C scripts all`
-- **PDF anschauen**: `make -C scripts view`
-- **Aufräumen**: `make -C scripts clean`
-- **Zitieren**: `\cite{Autor2023}` im Text verwenden
-- **Abbildungen**: In `figures/` ablegen, dann `\includegraphics{figures/...}` nutzen
+Follow the prompts to enter your name, work title, university, and choose between a **Standard Paper** or a **Lab Report**.
 
 ---
 
-**Viel Erfolg bei deiner wissenschaftlichen Arbeit! Lese zuerst [QUICKSTART](docs/QUICKSTART.txt)** 📚✨
+## 🛠 For Local Development
+If you have already cloned the repository:
+```bash
+./create-latex.py
+```
+
+## ✨ Features
+
+- **Modular Structure**: Organized folders for chapters, figures, and configuration.
+- **Two Presets**:
+  - `Preset 1`: Classic scientific work (Thesis, Paper).
+  - `Preset 2`: Lab report/Protocol style with a custom title page.
+- **Pre-configured**: Includes packages for math, graphics, tables, units (SI), and code highlighting (`minted` & `listings`).
+- **Automation**: Includes a `Makefile` and `compile.sh` for easy PDF generation.
+- **Bilingual Support**: Configured for German (ngerman) by default, easily adjustable.
+
+---
+
+## 📁 Project Structure
+
+```text
+.
+├── main.tex           # Main document entry point
+├── create-latex.py    # ✨ Interactive setup wizard
+├── config/            # Packages and global settings
+├── chapters/          # Your main content (Introduction, Results, etc.)
+├── presets/           # Different title page styles
+├── figures/           # Images and PDFs
+├── scripts/           # Build tools (Makefile, scripts)
+└── references.bib     # Bibliography (BibTeX)
+```
+
+## 🛠 Manual Setup
+
+If you prefer not to use the wizard:
+1. Clone this repository.
+2. Edit `config/preamble.tex` to set your name and university.
+3. Edit `main.tex` to choose your preset (`\def\currentPreset{1}`).
+4. Add your content in `chapters/`.
+5. Compile with `pdflatex main.tex`.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

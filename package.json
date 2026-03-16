@@ -1,0 +1,21 @@
+{
+  "name": "latex-template",
+  "version": "1.0.0",
+  "description": "Professional LaTeX Template Wizard",
+  "main": "create-latex.py",
+  "bin": {
+    "create-latex": "./create-latex.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git"
+  },
+  "keywords": [
+    "latex",
+    "template",
+    "cli",
+    "generator"
+  ],
+  "author": "Moritz Grießer",
+  "license": "MIT"
+}
