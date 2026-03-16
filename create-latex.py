@@ -3,6 +3,7 @@ import os
 import shutil
 import sys
 import re
+import subprocess
 from datetime import datetime
 
 def slugify(text):
@@ -17,10 +18,12 @@ def prompt(question, default=None):
         return res if res else default
     return input(f"  \033[1m{question}\033[0m: ").strip()
 
-def check_dependencies():
-    if not shutil.which("pdflatex"):
-        print("\n\033[93mWarning: 'pdflatex' was not found in your PATH.\033[0m")
-        print("You will need a LaTeX distribution (like TeX Live or MiKTeX) to compile your documents.")
+def run_command(cmd):
+    try:
+        subprocess.run(cmd, shell=True, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except subprocess.CalledProcessError:
+        return False
 
 def setup_project():
     print("\033[1;34m" + "="*50 + "\033[0m")
@@ -47,55 +50,58 @@ def setup_project():
     
     include_abstract = "1" if prompt("Include Abstract? (y/n)", "y").lower() == "y" else "0"
 
-    # 2. Define source and check for template files
-    source_dir = os.path.dirname(os.path.abspath(__file__))
-    required_dirs = ["chapters", "config", "presets", "sections", "scripts", "figures"]
-    missing_dirs = [d for d in required_dirs if not os.path.isdir(os.path.join(source_dir, d))]
+    # 2. Clone the repository
+    print(f"\n\033[93mFetching template from GitHub...\033[0m")
+    repo_urls = [
+        "https://github.com/mxrxtz/latex-template.git",
+        "git@github.com:mxrxtz/latex-template.git"
+    ]
     
-    temp_clone_dir = None
-    if missing_dirs:
-        print(f"\n\033[93mTemplate files not found locally. Fetching from GitHub...\033[0m")
-        temp_clone_dir = os.path.join(os.getcwd(), f".tmp-latex-{int(datetime.now().timestamp())}")
-        repo_url = "https://github.com/mxrxtz/latex-template.git"
-        
-        ret = os.system(f"git clone --depth 1 {repo_url} {temp_clone_dir} > /dev/null 2>&1")
-        if ret != 0:
-            print(f"\033[91mError: Could not clone repository. Please check your internet connection.\033[0m")
-            sys.exit(1)
-        source_dir = temp_clone_dir
+    success = False
+    for url in repo_urls:
+        if run_command(f"git clone --depth 1 {url} {project_slug}"):
+            success = True
+            break
+    
+    if not success:
+        print(f"\033[91mError: Could not download the template. Please check your internet connection and Git access.\033[0m")
+        sys.exit(1)
 
-    exclude_items = {
-        ".git", "__pycache__", "create-latex.py", "main.pdf", 
-        "_minted", "build", project_slug, "cookiecutter", ".DS_Store",
-        "package.json", "package-lock.json", "node_modules"
-    }
-
-    print(f"\n\033[1;32mCreating project in '{project_slug}'...\033[0m")
-    os.makedirs(project_slug)
-
-    # 3. Copy files
-    for item in os.listdir(source_dir):
-        if item in exclude_items or item.startswith(".tmp-latex"):
-            continue
-        
-        s = os.path.join(source_dir, item)
-        d = os.path.join(project_slug, item)
-
-        if os.path.isdir(s):
-            shutil.copytree(s, d)
-        else:
-            shutil.copy2(s, d)
+    # 3. Clean up the cloned directory
+    print(f"\033[1;32mConfiguring your project...\033[0m")
+    
+    # Files/folders to remove from the new project
+    to_remove = [
+        os.path.join(project_slug, ".git"),
+        os.path.join(project_slug, "create-latex.py"),
+        os.path.join(project_slug, "package.json"),
+        os.path.join(project_slug, "package-lock.json"),
+        os.path.join(project_slug, "node_modules"),
+        os.path.join(project_slug, "main.pdf"),
+        os.path.join(project_slug, ".tmp-latex-*"),
+    ]
+    
+    for path in to_remove:
+        if "*" in path: # Handle globbing
+            import glob
+            for p in glob.glob(path):
+                if os.path.isdir(p): shutil.rmtree(p)
+                else: os.remove(p)
+        elif os.path.exists(path):
+            if os.path.isdir(path): shutil.rmtree(path)
+            else: os.remove(path)
 
     # 4. Perform replacements
     def update_file(path, replacements):
-        if not os.path.exists(path):
+        full_path = os.path.join(project_slug, path)
+        if not os.path.exists(full_path):
             return
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(full_path, "r", encoding="utf-8") as f:
                 content = f.read()
             for pattern, replacement in replacements.items():
                 content = re.sub(pattern, replacement, content)
-            with open(path, "w", encoding="utf-8") as f:
+            with open(full_path, "w", encoding="utf-8") as f:
                 f.write(content)
         except Exception as e:
             print(f"\033[91mWarning: Could not update {path}: {e}\033[0m")
@@ -112,18 +118,16 @@ def setup_project():
         r'\\def\\includeAbstract\{.*?\}': f'\\\\def\\\\includeAbstract{{{include_abstract}}}',
     }
 
-    update_file(os.path.join(project_slug, "config", "preamble.tex"), preamble_replacements)
-    update_file(os.path.join(project_slug, "main.tex"), main_replacements)
+    update_file(os.path.join("config", "preamble.tex"), preamble_replacements)
+    update_file("main.tex", main_replacements)
 
-    # Clean up temp clone
-    if temp_clone_dir and os.path.exists(temp_clone_dir):
-        shutil.rmtree(temp_clone_dir)
-
-    check_dependencies()
+    # 5. Check for LaTeX
+    if not shutil.which("pdflatex"):
+        print("\n\033[93mNote: 'pdflatex' not found. Install TeX Live or MacTeX to compile.\033[0m")
 
     print("\n\033[1;32mSuccess! Your project is ready.\033[0m")
     print(f"\nNext steps:\n  \033[1mcd {project_slug}\033[0m")
-    print("  \033[1mmake -C scripts all\033[0m  (or run pdflatex main.tex)\n")
+    print("  \033[1mpdflatex main.tex\033[0m\n")
 
 if __name__ == "__main__":
     try:
