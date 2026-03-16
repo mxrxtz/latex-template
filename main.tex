@@ -7,16 +7,14 @@
 \input{config/preamble.tex}
 
 %===============================================================================
-% Preset-Auswahl (1 oder 2)
-% 1 = Standard wissenschaftliche Arbeit
-% 2 = Laborberichterstattung
+% Preset-Auswahl (standard oder labreport)
+% standard   = Standard wissenschaftliche Arbeit
+% labreport  = Laborberichterstattung
 %===============================================================================
-\def\currentPreset{1}
+\def\currentPreset{standard}
 
 %===============================================================================
-% Abstract ein-/ausschalten
-% 1 = mit Abstract
-% 0 = ohne Abstract
+% Abstract ein-/ausschalten (1 = ein, 0 = aus)
 %===============================================================================
 \def\includeAbstract{1}
 
@@ -33,13 +31,9 @@
 \begin{document}
 
 %===============================================================================
-% Titelseite (je nach Preset)
+% Titelseite (dynamisch geladen aus presets/)
 %===============================================================================
-\ifnum\currentPreset=1
-    \input{presets/preset1/titlepage.tex}
-\else\ifnum\currentPreset=2
-        \input{presets/preset2/titlepage.tex}
-    \fi\fi
+\input{presets/\currentPreset/titlepage.tex}
 
 % Frontmatter mit roemischen Seitenzahlen
 \pagenumbering{roman}

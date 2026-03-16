@@ -33,7 +33,7 @@ def setup_project():
     parser.add_argument("--title", help="Work title")
     parser.add_argument("--uni", help="University name")
     parser.add_argument("--inst", help="Institute/Department name")
-    parser.add_argument("--preset", choices=["1", "2"], help="Template preset (1 or 2)")
+    parser.add_argument("--preset", choices=["standard", "labreport"], help="Template preset (standard or labreport)")
     parser.add_argument("--abstract", choices=["y", "n"], help="Include abstract (y/n)")
     parser.add_argument("-y", "--yes", action="store_true", help="Skip prompts and use defaults")
     
@@ -50,7 +50,7 @@ def setup_project():
         work_title = args.title or "Title of your Work"
         university = args.uni or "Your University"
         institute = args.inst or "Your Department"
-        preset = args.preset or "1"
+        preset = args.preset or "standard"
         include_abstract = "1" if (args.abstract or "y") == "y" else "0"
     else:
         project_name = args.name or prompt("Project Name", "my-academic-work")
@@ -61,9 +61,9 @@ def setup_project():
         
         if not args.preset:
             print("\n  \033[1mChoose Template Preset:\033[0m")
-            print("  1: Standard Scientific Work")
-            print("  2: Lab Report / Protocol")
-            preset = prompt("Preset (1 or 2)", "1")
+            print("  - standard:   Standard Scientific Work")
+            print("  - labreport:  Lab Report / Protocol")
+            preset = prompt("Preset (standard or labreport)", "standard")
         else:
             preset = args.preset
             
