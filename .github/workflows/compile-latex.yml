@@ -13,16 +13,13 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Install Pygments (for minted)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pygments
-
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          # -shell-escape is required for the minted package (code highlighting)
+          # Install Pygments inside the container for the minted package
+          extra_system_packages: "py3-pygments"
+          # -shell-escape is required for minted
           args: "-pdf -shell-escape -interaction=nonstopmode"
 
       - name: Upload PDF artifact
