@@ -13,6 +13,11 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
+      - name: Install Pygments (for minted)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pygments
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
